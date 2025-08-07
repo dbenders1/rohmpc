@@ -109,7 +109,14 @@ To set up the Docker container, following the instructions below:
     ```
     In the [mpc_solver](./catkin_ws/src/mpc/mpc_solver) package, this will generate a directory *falcon* in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and a file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory.
 
-7. You are ready to reproduce! Checkout the following section for the next steps.
+7. After generating the solver, you can build the catkin workspace inside the Docker container. To do this, run the following command in the *build* pane of the tmux session (by pressing `arrow-up`):
+    ```bash
+    catkin build agiros
+    ```
+
+8. After a successful build of the workspace you have to source the setup file of the workspace in every terminal you are going to use. The easiest way to do this is to restart the tmux session by pressing `Ctrl-a` and then `d` to detach from the session, run `krohmpc` to kill the session, and then start it again with `srohmpc`. This will automatically source the setup file in every terminal of the tmux session.
+
+9. You are ready to reproduce! Checkout the following section for the next steps.
 
 
 
