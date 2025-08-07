@@ -1,0 +1,39 @@
+[submodule "src/catkin_ws/src/DecompUtil"]
+	path = src/catkin_ws/src/DecompUtil
+	url = git@github.com:tud-amr/DecompUtil.git
+[submodule "src/catkin_ws/src/agiclean"]
+	path = src/catkin_ws/src/agiclean
+	url = git@github.com:tud-amr/agiclean.git
+[submodule "src/catkin_ws/src/catkin_simple"]
+	path = src/catkin_ws/src/catkin_simple
+	url = git@github.com:catkin/catkin_simple.git
+[submodule "src/catkin_ws/src/eigen_catkin"]
+	path = src/catkin_ws/src/eigen_catkin
+	url = git@github.com:ethz-asl/eigen_catkin.git
+[submodule "src/catkin_ws/src/gazebo_ros_pkgs"]
+	path = src/catkin_ws/src/gazebo_ros_pkgs
+	url = git@github.com:dbenders1/gazebo_ros_pkgs.git
+[submodule "src/catkin_ws/src/mav_comm"]
+	path = src/catkin_ws/src/mav_comm
+	url = git@github.com:ethz-asl/mav_comm.git
+[submodule "src/catkin_ws/src/mpc"]
+	path = src/catkin_ws/src/mpc
+	url = git@github.com:dbenders1/mpc.git
+[submodule "src/catkin_ws/src/mpc_model_id_mismatch"]
+	path = src/catkin_ws/src/mpc_model_id_mismatch
+	url = git@github.com:dbenders1/mpc_model_id_mismatch.git
+[submodule "src/catkin_ws/src/occupancygrid_creator"]
+	path = src/catkin_ws/src/occupancygrid_creator
+	url = git@github.com:R2CLab/occupancygrid_creator.git
+[submodule "src/catkin_ws/src/rohmpc-data-analysis"]
+	path = src/catkin_ws/src/rohmpc-data-analysis
+	url = git@github.com:dbenders1/rohmpc-data-analysis.git
+[submodule "src/catkin_ws/src/rosbag2json"]
+	path = src/catkin_ws/src/rosbag2json
+	url = git@github.com:dbenders1/rosbag2json.git
+[submodule "src/catkin_ws/src/rotors_simulator"]
+	path = src/catkin_ws/src/rotors_simulator
+	url = git@github.com:tud-amr/rotors_simulator.git
+[submodule "src/catkin_ws/src/simple_sim"]
+	path = src/catkin_ws/src/simple_sim
+	url = git@github.com:dbenders1/simple_sim.git
