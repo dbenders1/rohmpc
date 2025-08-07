@@ -1,0 +1,43 @@
+name: rohmpc
+root: ~/
+
+windows:
+  - build:
+      layout: bc5d,274x72,0,0,0
+      panes:
+        - clear && cdws && history -s "catkin build agiros" && history -s "catkin build agiros"
+  - calib:
+      layout: dd8a,274x72,0,0{137x72,0,0,12,136x72,138,0,13}
+      panes:
+        - clear && history -s "run_calib_env"
+        - clear && history -s "run_calib"
+  - run:
+      layout: 7786,203x58,0,0[203x18,0,0{101x18,0,0,1,101x18,102,0,11},203x39,0,19{101x39,0,19,10,101x39,102,19,12}]
+      panes:
+        - clear && history -s "run_base" && history -s "run_falcon" && history -s "run_gazebo" && history -s "run_sim" && history -s "gen_traj" && history -s "run_sim_1_base" && history -s "run_sim_2_base" && history -s "run_gaz_1_base" && history -s "run_gaz_2_base"
+        - clear && cd .ros && history -s "ls -al --sort=time -r" && history -s "rosbag record /step_control /falcon/motor_speed /falcon/odometry /falcon/ground_truth/odometry /falcon/ground_truth/imu /w /eta"
+        - clear && history -s "run_sim_2_1" && history -s "run_gaz_2_1"
+        - clear && roscd mpc_falcon && cd scripts && history -s "python goal_publisher.py --d_min 0.02 --d_dim 2 --goals -2.2 -1.4 1 0 2.2 1.4 1 0"
+  - rostopic:
+      layout: bc54,203x52,0,0{101x52,0,0,11,101x52,102,0[101x26,102,0,17,101x25,102,27,18]}
+      panes:
+        - clear && history -s "rostopic echo " && history -s "rostopic list"
+        - clear && history -s "rqt_graph"
+        - clear && history -s "rosrun rqt_tf_tree rqt_tf_tree"
+  - rviz:
+      layout: 5a66,211x53,0,0[211x14,0,0,3,211x38,0,15{105x38,0,15,6,105x38,106,15,7}]
+      panes:
+        - clear && history -s "roscore"
+        - clear && history -s "rviz"
+        - clear && cd .ros && history -s "rosbag play " && history -s "ls -al --sort=time -r"
+  - profiling:
+      layout: df67,211x55,0,0[211x27,0,0{105x27,0,0,5,105x27,106,0,20},211x27,0,28{105x27,0,28,19,105x27,106,28,21}]
+      panes:
+        - clear && cdws && cd src/mpc/mpc_tools/profiling && history -s "./concatenate_profiling.sh 2" && history -s "./concatenate_profiling.sh 1"
+        - clear && cdws && cd src/mpc/mpc_tools/profiling && history -s "cp mpc_profiler.json ../../../agiclean/agilib/profiling"
+        - clear && cdws && cd src/rotors_simulator/rotors_gazebo_plugins/profiling && history -s "cp rotors_gazebo_plugins_profiler.json ../../../agiclean/agilib/profiling"
+        - clear && cdws && cd src/agiclean/agilib/profiling && history -s "./concatenate_profiling.sh false false" && history -s "./concatenate_profiling.sh true true" && history -s "./concatenate_profiling.sh true false"
+  - rec_data:
+      layout: 5ce0,211x53,0,0,11
+      panes:
+        - clear && roscd mpc_tools && cd recorded_data && history -s "ls -al --sort=time -r"

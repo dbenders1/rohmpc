@@ -1,0 +1,10 @@
+benchmark_catkin: {ubuntu: []}
+drone_description: {ubuntu: []}
+drone_gazebo: {ubuntu: []}
+joy: {ubuntu: []}
+mavros: {ubuntu: []}
+mavros_msgs: {ubuntu: []}
+px4_tools: {ubuntu: []}
+rqt_reconfigure: {ubuntu: []}
+rviz_tools: {ubuntu: []}
+simple_sim: {ubuntu: []}
