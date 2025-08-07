@@ -5,8 +5,8 @@ Contents:\
 [Preliminary notes](#preliminary-notes)\
 [Overview](#overview)\
 [Install](#install)\
-[Build](#build)\
-[Run](#run)
+[Set up Docker](#set-up-docker)\
+[Reproduce](#reproduce)\
 
 
 
@@ -69,10 +69,38 @@ The [agiclean](./catkin_ws/src/agiclean) package provides a custom version of th
 
 
 
-## Build
-TODO
+## Set up Docker
+To set up the Docker container, following the instructions below:
+1. Go to the `src` directory of this repo:
+    ```bash
+    cd src
+    ```
+
+2. Build the Docker image by filling in the required arguments:
+    ```bash
+    sudo ./docker_build.sh
+    ```
+    Give the Docker image a descriptive name, such as *agi*.
+
+3. Create and run container from the built image by filling in the required arguments:
+    ```bash
+    ./docker_run.sh
+    ```
+    Give the Docker container a descriptive name, such as *johndoe-paper-rohmpc* and provide an arbitrary number for the Falcon ID, for example 7. From now on, we refer to the container with this name.
+
+4. Start the [tmuxinator](https://github.com/tmuxinator/tmuxinator) project [*rohmpc.yml*](./config_files/.tmuxinator/rohmpc.yml):
+    ```bash
+    tmuxinator start rohmpc
+    ```
+    This will start a pre-defined [tmux](https://github.com/tmux/tmux/wiki) session with the name *rohmpc* providing several useful terminal windows. Attach to the running tmux session using `arohmpc` and kill it using `krohmpc`.
+
+    > :information_source: Compared to the default tmux settings, we have changed the prefix key to `Ctrl-a` for convenience of usage, see the [tmux.conf](./config_files/dotfiles/.tmux.conf) file for more information.
 
 
 
-## Run
-TODO
+## Reproduce
+If everything is correctly installed, all steps in the pipeline should run out of the box. These steps include:
+1. [Uncertainty quantification](./uq.md)
+2. [Robust and terminal ingredients design](./robust_term_design.md)
+3. [Tightening calibration](./tightening_calib.md)
+4. [ROHMPC deployment and analysis](./rohmpc.md)
