@@ -99,7 +99,7 @@ To set up the Docker container, following the instructions below:
 
 
 ## Reproduce
-If everything is correctly installed, all steps in the pipeline should run out of the box. These steps include:
+If everything above is set up correctly, all steps in the pipeline should run out of the box. These steps include:
 1. [Uncertainty quantification](./uq.md)
 2. [Robust and terminal ingredients design](./robust_term_design.md)
 3. [Tightening calibration](./tightening_calib.md)
