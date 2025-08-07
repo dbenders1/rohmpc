@@ -56,6 +56,10 @@ Install [Docker](https://docs.docker.com/) by following the instructions on [thi
 The solver generation code in the [MPC](./catkin_ws/src/mpc) repository requires Python 3. See the [MPC README](./catkin_ws/src/mpc/README.md) for more information.
 
 
+### ACADOS
+See the [mpc_model_id_mismatch README](./catkin_ws/src/mpc_model_id_mismatch/README.md) for the required version of ACADOS and how to install it.
+
+
 ### ForcesPro license
 The MPC implementations use a ForcesPro solver. Therefore, first request a ForcesPro license and install the client. To this end, follow the corresponding instructions in the [MPC README](./catkin_ws/src/mpc/README.md).
 
@@ -109,7 +113,7 @@ To set up the Docker container, following the instructions below:
     ```
     In the [mpc_solver](./catkin_ws/src/mpc/mpc_solver) package, this will generate a directory *falcon* in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and a file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory.
 
-7. After generating the solver, you can build the catkin workspace inside the Docker container. To do this, run the following command in the *build* pane of the tmux session (by pressing `arrow-up`):
+7. After generating the solver, you can build the catkin workspace inside the Docker container. To do this, run the following command in the *build* window of the tmux session (by pressing `arrow-up`):
     ```bash
     catkin build agiros
     ```
