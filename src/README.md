@@ -96,6 +96,21 @@ To set up the Docker container, following the instructions below:
 
     > :information_source: Compared to the default tmux settings, we have changed the prefix key to `Ctrl-a` for convenience of usage, see the [tmux.conf](./config_files/dotfiles/.tmux.conf) file for more information.
 
+5. Leave the container and source the following aliases in the *~/.bashrc* file on your host machine:
+    ```bash
+    alias cdagimpcsolver='cd <path_to_repo>/src/catkin_ws/src/mpc/mpc_solver'
+    alias agi_gen_hmpc_solver_x86='cdagimpcsolver; ./setup_script.sh -c tmpc_settings.py -c pmpc_settings.py -s falcon -f X86'
+    ```
+    where `<path_to_repo>` is the path to this repository on your host machine.
+
+6. After sourcing the aliases, generate the HMPC solver:
+    ```bash
+    agi_gen_hmpc_solver_x86
+    ```
+    In the [mpc_solver](./catkin_ws/src/mpc/mpc_solver) package, this will generate a directory *falcon* in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and a file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory.
+
+7. You are ready to reproduce! Checkout the following section for the next steps.
+
 
 
 ## Reproduce
