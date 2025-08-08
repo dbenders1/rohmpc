@@ -78,7 +78,7 @@ The estimated uncertainty bounds are already included in [falcon_t.mat](./catkin
 
       > :information_source: When using [simple_sim](./catkin_ws/src/simple_sim), the disturbances are also recorded in the ROS bag, so there is no need to first determine them. Running such a simulation is easy: just use the `run_sim_2_base` command instead of `run_gaz_2_base`.
 
-2. In a separate terminal on your host machine, run the following commands to set up and activate the virtual environment in the [mpc_model_id_mismatch](./catkin_ws/src/mpc_model_id_mismatch) repository:
+2. In a separate terminal on your host machine, run the following commands to set up and activate the virtual environment in the [mpc_model_id_mismatch](./catkin_ws/src/mpc_model_id_mismatch) package:
     ```bash
     cd <path_to_mpc_model_id_mismatch>
     ./setup_venv.sh <path_to_acados_template>

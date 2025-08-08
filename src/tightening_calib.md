@@ -16,11 +16,11 @@ Contents:\
 ## Reproduce calibration of $\rho$
 The calibration of $\rho$ is based on comparing the multi-step prediction of the nominal model with the actual system response when tracking a nominal reference trajectory with just the observer and feedback controller in the loop (without TMPC). The result of this calibration is stored in [tightening.json](./catkin_ws/src/mpc_model_id_mismatch/data/tightening_results/tightening.json). To reproduce this result, follow the instructions below:
 1. We first need to collect data of tracking the nominal reference trajectory. Since the model parameters and feedback and observer values need to be known in the code, let's generate the ForcesPro code for PMPC and TMPC without constraint tightening and terminal sets. We need these MPC schemes in the next section anyway. To do this:
-    - [tmpc_settings.py](./catkin_ws/src/mpc/mpc_solver/scripts/systems/falcon/tmpc_settings.py):
+    - Ensure that the following parameters are set correctly in [tmpc_settings.py](./catkin_ws/src/mpc/mpc_solver/scripts/systems/falcon/tmpc_settings.py):
       - Set `model_options["use_tightened_system_constraints"]` to `False`
       - Set `model_options["use_tightened_obstacle_constraints"]` to `False`
       - Set `model_options["use_terminal_set_constraint"]` to `False`
-    - [pmpc_settings.py](./catkin_ws/src/mpc/mpc_solver/scripts/systems/falcon/pmpc_settings.py):
+    - Ensure that the following parameters are set correctly in [pmpc_settings.py](./catkin_ws/src/mpc/mpc_solver/scripts/systems/falcon/pmpc_settings.py):
       - Set `model_options["use_tightened_system_constraints"]` to `False`
       - Set `model_options["use_tightened_obstacle_constraints"]` to `False`
       - Set `model_options["use_terminal_steady_state_constraint"]` to `False`
@@ -54,7 +54,7 @@ The calibration of $\rho$ is based on comparing the multi-step prediction of the
     cp <bag_name>.bag ~/catkin_ws/src/rosbag2json/data/recorded_bags/2025-08-08_gaz_falcon_calibrate_rho_c.bag
     ```
 
-6. Convert the ROS bag to JSON files by adding them to [rosbag2json.yaml](./catkin_ws/src/rosbag2json/config/scripts/rosbag2json.yaml) under `# Bag files to calibrate tightening below` and running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
+6. Convert the ROS bag to a JSON file by adding it to [rosbag2json.yaml](./catkin_ws/src/rosbag2json/config/scripts/rosbag2json.yaml) under `# Bag files to calibrate tightening below` and running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
 
 7. Set the following parameters in [determine_tightening.yaml](./catkin_ws/src/mpc_model_id_mismatch/config/scripts/determine_tightening.yaml):
    - Set `runtime_json_names` to the last generated JSON file in the [recorded_data](./catkin_ws/src/mpc/mpc_tools/recorded_data) directory, for example:
@@ -84,7 +84,7 @@ $\bar{w}^\mathrm{o}$ and $\epsilon$ are calibrated based on the closed-loop syst
     - [falcon_hmpc.yaml](./catkin_ws/src/mpc/mpc_systems/mpc_falcon/config/falcon_hmpc.yaml):
       - Set `use_nominal_reference` to `false`
 
-2. Record one full trajectory by taking the following steps:
+2. Record one full trajectory (at least 29 s for circular trajectories; at least 43 s for lemniscate trajectories) by taking the following steps:
     - Start the PMPC scheme by running the following command in the bottom-left pane in tmux window *run*:
       ```bash
       run_gaz_2_1
@@ -101,7 +101,7 @@ $\bar{w}^\mathrm{o}$ and $\epsilon$ are calibrated based on the closed-loop syst
 
 4. Repeat steps 2 and 3 for the counter-clockwise circular trajectory and clockwise and counter-clockwise lemniscate trajectories.
 
-5. Convert the ROS bag to JSON files by running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
+5. Convert the ROS bag to JSON files by adding them to [rosbag2json.yaml](./catkin_ws/src/rosbag2json/config/scripts/rosbag2json.yaml) under `# Bag files to calibrate tightening below` and running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
 
 6. Correctly set the parameters in [determine_tightening.yaml](./catkin_ws/src/mpc_model_id_mismatch/config/scripts/determine_tightening.yaml) similar to the ones in the previous section.
 
