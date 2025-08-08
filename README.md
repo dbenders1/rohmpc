@@ -33,7 +33,7 @@ Visit the following links to see how each of the steps in the pipeline is implem
 The animation below shows the ROHMPC framework operating in a Gazebo simulation:
 
 <div align="center">
-  <img src="./media/rohmpc.mp4" alt="ROHMPC RViZ animation">
+  <img src="./media/rohmpc.gif" alt="ROHMPC RViZ animation">
 </div>
 
 We challenge you to reproduce this result in our paper! :wink:
