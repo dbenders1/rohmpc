@@ -7,7 +7,7 @@ Contents:\
 
 ## High-level information
 - Purpose: compute the robust ingredients:
-  - CCM $P^\delta$
+  - Metric $P^\delta$
   - Robust feedback gain $K^\delta$
   - System constraint tightening constants $c_j^\mathrm{s}, j\in\mathbb{N}_{[1,n^\mathrm{s}]}$
   - Obstacle avoidance constraint tightening constants $c^\mathrm{o}$
