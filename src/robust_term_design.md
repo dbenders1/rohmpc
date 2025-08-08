@@ -30,4 +30,4 @@ There are several hyperparameters that you can play around with that affect the 
   - TMPC tuning matrices $Q$ and $R$ - used to tune the TMPC cost function. These values only affect the design of $P$.
     > :bulb: By the ROHMPC design in this paper, there is no need to spend a lot of time on tuning $Q$ and $R$ for the scheme to work. Therefore, they are set to identity matrices.
 
-Yes, yes, the next step is also done! :white_check_mark: You have successfully completed the robust and terminal ingredients design! :tada:
+:white_check_mark: Yes, yes, the next step is also done! You have successfully completed the robust and terminal ingredients design! Let's continue with the [tightening calibration](./tightening_calib.md)!

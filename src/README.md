@@ -92,7 +92,7 @@ To set up the Docker container, following the instructions below:
     ```
     Give the Docker container a descriptive name, such as *johndoe-paper-rohmpc* and provide an arbitrary number for the Falcon ID, for example 7. From now on, we refer to the container with this name.
 
-4. Start the [tmuxinator](https://github.com/tmuxinator/tmuxinator) project [*rohmpc.yml*](./config_files/.tmuxinator/rohmpc.yml):
+4. Start the [tmuxinator](https://github.com/tmuxinator/tmuxinator) project [rohmpc.yml](./config_files/.tmuxinator/rohmpc.yml):
     ```bash
     tmuxinator start rohmpc
     ```
@@ -102,14 +102,14 @@ To set up the Docker container, following the instructions below:
 
 5. Leave the container and source the following aliases in the *~/.bashrc* file on your host machine:
     ```bash
-    alias cdagimpcsolver='cd <path_to_repo>/src/catkin_ws/src/mpc/mpc_solver'
-    alias agi_gen_hmpc_solver_x86='cdagimpcsolver; ./setup_script.sh -c tmpc_settings.py -c pmpc_settings.py -s falcon -f X86'
+    alias cdrohmpcsolver='cd <path_to_repo>/src/catkin_ws/src/mpc/mpc_solver'
+    alias agi_gen_rohmpc_solver_x86='cdrohmpcsolver; ./setup_script.sh -c tmpc_settings.py -c pmpc_settings.py -s falcon -f X86'
     ```
     where `<path_to_repo>` is the path to this repository on your host machine.
 
-6. After sourcing the aliases, generate the HMPC solver:
+6. After sourcing the aliases, generate the ROHMPC solver:
     ```bash
-    agi_gen_hmpc_solver_x86
+    agi_gen_rohmpc_solver_x86
     ```
     In the [mpc_solver](./catkin_ws/src/mpc/mpc_solver) package, this will generate a directory *falcon* in the [include](./catkin_ws/src/mpc/mpc_solver/include/mpc_solver/) and [src](./catkin_ws/src/mpc/mpc_solver/src) directories and a file *cmake_globalvars.cmake* in the [src](./catkin_ws/src/mpc/mpc_solver/src) directory.
 

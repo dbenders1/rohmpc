@@ -15,7 +15,7 @@ Contents:\
 
 
 ## Reproduce collecting input-output data
-The recorded input-output data is already stored in the repository as ROS bag files and JSON files in the [*recorded_bags*](./catkin_ws/src/rosbag2json/data/recorded_bags) and [*converted_bags*](./catkin_ws/src/rosbag2json/data/converted_bags) directories. If you want to reproduce the steps to collect the input-output data, follow the instructions below:
+The recorded input-output data is already stored in the repository as ROS bag files and JSON files in the [recorded_bags](./catkin_ws/src/rosbag2json/data/recorded_bags) and [converted_bags](./catkin_ws/src/rosbag2json/data/converted_bags) directories. If you want to reproduce the steps to collect the input-output data, follow the instructions below:
 1. Generate a clockwise circular trajectory with radius 1 and frequency 0.3 Hz. To do this:
     - Ensure that the last uncommented code in [symbolic_trajectory.py](./catkin_ws/src/agiclean/agiros/quadrotor_trajectory_generation/utils/symbolic_trajectory.py) corresponds to the desired trajectory.
     - Match the speedup time and duration times in brackets with the values in [settings.yaml](./catkin_ws/src/agiclean/agiros/quadrotor_trajectory_generation/config/settings.yaml).
@@ -38,7 +38,7 @@ The recorded input-output data is already stored in the repository as ROS bag fi
 
 3. Ensure you have a stable internet connection. Due to the code structure, the MPC controller belonging to the work in this paper needs to verify the ForcesPro license upon construction of the controller class. This requires an internet connection. Restart the simulation if you see the following warning message: `License error (exit_code = -100)`.
 
-4. Check that the `gazebo_x_init` and `gazebo_y_init` arguments in [main.launch](./catkin_ws/src/agiclean/agiros/agiros/launch/simulation/main.launch) are set to 0.0, so that the Gazebo simulation starts at the origin.
+4. Check that the `gazebo_x_init` and `gazebo_y_init` arguments in [main.launch](./catkin_ws/src/agiclean/agiros/agiros/launch/simulation/main.launch) are set to 0, so that the Gazebo simulation starts at the origin.
 
 5. Check that the correct trajectory is selected in [main.launch](./catkin_ws/src/agiclean/agiros/agiros/launch/simulation/main.launch). To do this, set the `traj_file_name` argument to the name of the trajectory file you generated in step 1. For example, if you generated the clockwise circular trajectory, set it to `traj_circle_r1_f0dot3_cw.csv`.
 
@@ -61,7 +61,9 @@ The recorded input-output data is already stored in the repository as ROS bag fi
     - *2025-08-07_gaz_falcon_model_mismatch_traj_lemniscate_r1_f0dot3_cw.bag* for the clockwise lemniscate trajectory
     - *2025-08-07_gaz_falcon_model_mismatch_traj_lemniscate_r1_f0dot3_ccw.bag* for the counter-clockwise lemniscate trajectory
 
-9. Convert the ROS bags to JSON files by running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
+9. Add the ROS bag files that you want to process to `bag_names` in [rosbag2json.yaml](./catkin_ws/src/rosbag2json/config/rosbag2json.yaml) under `# Bag files to determine model mismatch below`. Ensure that this is the only `bag_names` entry uncommented in the file. Also, ensure that the `topic_names` below are also the only ones that are uncommented.
+
+10. Convert the ROS bags to JSON files by running [rosbag2json.py](./catkin_ws/src/rosbag2json/scripts/rosbag2json.py) in a separate terminal on your host machine.
   > :information_source: This requires a working ROS installation that recognizes the messages in the ROS bag that you want to read. To make the uncertainty bounds estimation agnostic to the ROS distribution and Ubuntu version, we have already converted the ROS bags to JSON files and include the resulting JSON files in the repository. This way, the reproducibility only depends on the installation of Python.
 
 
@@ -99,7 +101,7 @@ The estimated uncertainty bounds are already included in [falcon_t.mat](./catkin
     ```bash
     python scripts/determine_model_mismatch.py
     ```
-    This will take a while to compute and should print an output with information about the overall disturbance and measurement noise bounds. Furthermore, it should produce the files [falcon_t.mat](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.mat) and [falcon_t.json](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.json) in the [*mpc_model_id_mismatch_results*](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results) directory.
+    This will take a while to compute and should print an output with information about the overall disturbance and measurement noise bounds. Furthermore, it should produce the files [falcon_t.mat](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.mat) and [falcon_t.json](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.json) in the [mpc_model_id_mismatch_results](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results) directory.
 
 6. Now, it's time for the next step: the robust and terminal ingredients design. To do this, follow the instructions in [robust_term_design.md](./robust_term_design.md).
 
@@ -119,7 +121,7 @@ The plots included in the paper are stored as [likelihood.pdf](./catkin_ws/src/m
     ```bash
     python scripts/determine_model_mismatch.py
     ```
-    This will update the files [falcon_t.mat](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.mat) and [falcon_t.json](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.json) in the [*mpc_model_id_mismatch_results*](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results) directory.
+    This will update the files [falcon_t.mat](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.mat) and [falcon_t.json](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.json) in the [mpc_model_id_mismatch_results](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results) directory.
 
 4. To create and store the plots as PDF, ensure to set the following parameters in [plot_model_mismatch_data.yaml](./catkin_ws/src/mpc_model_id_mismatch/config/scripts/plot_model_mismatch_data.yaml):
     - `save_settings/w_est_gt_ratios_combined` to `true`
@@ -132,4 +134,4 @@ The plots included in the paper are stored as [likelihood.pdf](./catkin_ws/src/m
 
 6. Restore the [falcon_t.mat](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.mat) and [falcon_t.json](./catkin_ws/src/mpc_model_id_mismatch/data/model_mismatch_results/falcon_t.json) files computed in the previous section.
 
-7. That's it! You have successfully completed all UQ steps! :tada:
+:white_check_mark: That's it! You have successfully completed all UQ steps! Let's continue with the [robust and terminal ingredients design](./robust_term_design.md)!
