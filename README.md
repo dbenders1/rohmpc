@@ -1,11 +1,13 @@
-# hmpc
+# rohmpc
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
 
 
 ## ICRA 2026 submission
-The reference implementation of the design pipeline for robust MPC schemes in our ICRA 2026 submission.
+The reference implementation of our ICRA 2026 submission:
+
+**From Data to Safe Mobile Robot Navigation: An Efficient, Modular, and Reproducible Robust MPC Design Pipeline**
 
 
 
