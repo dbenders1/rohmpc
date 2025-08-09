@@ -7,7 +7,7 @@
 ## ICRA 2026 submission
 The reference implementation of our ICRA 2026 submission:
 
-**From Data to Safe Mobile Robot Navigation: An Efficient, Modular, and Reproducible Robust MPC Design Pipeline**
+**From Data to Safe Mobile Robot Navigation: An Efficient and Modular Robust MPC Design Pipeline**
 
 
 
@@ -24,7 +24,7 @@ This pipeline is:
 
 :jigsaw: **Modular** - The design pipeline allows to integrate your own dynamic model and adjust other system properties to customize the setup for your own application!
 
-:repeat: **Reproducible** - All simulations are deterministic will give the same results every run. You missed some data? No problem, you can re-run the pipeline at any time to regenerate the results!
+:repeat: **Reproducible** - All simulations are deterministic: they will give the same results every run through the use of random seeds. You missed some data? No problem, you can re-run the pipeline at any time to regenerate the results!
 
 Visit the following links to see how each of the steps in the pipeline is implemented.
 1. [Uncertainty quantification](./src/uq.md)
